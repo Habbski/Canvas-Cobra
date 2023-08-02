@@ -1,13 +1,15 @@
 class Snake {
-  constructor(ctx, gameOver) {
+  constructor(ctx, gameOver, points) {
     this.ctx = ctx;
-    this.gameOver = gameOver;
     this.body = [{ x: 400, y: 400 }];
     this.width = 40;
     this.height = 40;
     this.velocity = 40;
     this.growthSegments = 0;
     this.maxFrequencySpeed = 50;
+
+    this.gameOver = gameOver;
+    this.points = points;
 
     this.controller();
     this.direction = 'RIGHT';
@@ -56,7 +58,7 @@ class Snake {
   }
 
   collision(food, head) {
-    const SEGMENT_SIZE = 1;
+    const SEGMENT_SIZE = 2;
 
     // Collision with food
     if (
@@ -66,6 +68,7 @@ class Snake {
       head.y + this.height > food.y
     ) {
       this.growthSegments = SEGMENT_SIZE;
+      this.points.value += 10;
       food.changePosition();
       if (this.updateFrequency > this.maxFrequencySpeed) {
         this.updateFrequency -= 5;
@@ -128,6 +131,7 @@ class Snake {
     this.velocity = 40;
     this.growthSegments = 0;
     this.direction = 'RIGHT';
+    this.points.value = 0;
 
     document.getElementById('reset-button').style.display = 'none';
   }
