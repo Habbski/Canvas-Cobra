@@ -11,12 +11,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Sentrerer vertikalt */
-  min-height: 100vh; /* Gjør at body fyller hele vindushøyden */
+  justify-content: center;
+  min-height: 100vh;
 }
 
 h1 {
-    font-size: 55px;
+  font-size: 55px;
 }
 
 #game-container {
@@ -35,6 +35,14 @@ canvas {
   box-shadow: 52px 52px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
+#start-display {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
 #gameover-display {
   display: none;
   position: fixed;
@@ -50,11 +58,11 @@ canvas {
 
 #final-score {
   font-size: 24px;
-  margin-bottom: 40px; /* legger til litt plass mellom score og reset-knappen */
+  margin-bottom: 40px;
 }
 
 /* CSS btn by Alpine Day*/
-#reset-button {
+.styled-btn {
   background-color: #3dd1e7;
   border: 0 solid #e5e7eb;
   box-sizing: border-box;
@@ -82,11 +90,11 @@ canvas {
   touch-action: manipulation;
 }
 
-#reset-button:focus {
+.styled-btn:focus {
   outline: 0;
 }
 
-#reset-button:after {
+.styled-btn:after {
   content: '';
   position: absolute;
   border: 1px solid #000000;
@@ -96,13 +104,13 @@ canvas {
   height: calc(100% - 1px);
 }
 
-#reset-button:hover:after {
+.styled-btn:hover:after {
   bottom: 2px;
   left: 2px;
 }
 
 @media (min-width: 768px) {
-  #reset-button {
+  .styled-btn {
     padding: 0.75rem 3rem;
     font-size: 1.25rem;
   }

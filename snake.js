@@ -4,18 +4,12 @@ class Snake {
     this.body = [{ x: 400, y: 400 }];
     this.width = 40;
     this.height = 40;
-    this.velocity = 40;
+    this.velocity = 2;
     this.growthSegments = 0;
-    this.maxFrequencySpeed = 50;
-
     this.gameOver = gameOver;
     this.points = 0;
-
     this.controller();
     this.direction = 'RIGHT';
-
-    this.lastUpdate = 0;
-    this.updateFrequency = 200;
   }
 
   draw() {
@@ -27,10 +21,8 @@ class Snake {
     this.ctx.closePath();
   }
 
-  update(food, timestamp) {
+  update(food) {
     this.draw();
-    if (timestamp - this.lastUpdate < this.updateFrequency) return;
-    this.lastUpdate = timestamp;
 
     const head = { ...this.body[0] };
 
@@ -49,9 +41,6 @@ class Snake {
         break;
     }
 
-    this.x = head.x;
-    this.y = head.y;
-
     this.boundaries(head);
     this.collision(food, head);
     this.growthHandling(head);
@@ -67,37 +56,25 @@ class Snake {
       head.y < food.y + food.height &&
       head.y + this.height > food.y
     ) {
-      this.growthSegments = SEGMENT_SIZE;
+      this.growthSegments += SEGMENT_SIZE;
       this.points += 10;
       food.changePosition();
-      if (this.updateFrequency > this.maxFrequencySpeed) {
-        this.updateFrequency -= 5;
-      } else {
-        this.updateFrequency = this.maxFrequencySpeed;
-      }
     }
 
     // Collision with snake body
-    this.body.forEach((segment, index) => {
-      if (index === 0) return; // Dont check the head
-
-      if (
-        head.x < segment.x + this.width &&
-        head.x + this.width > segment.x &&
-        head.y < segment.y + this.height &&
-        head.y + this.height > segment.y
-      ) {
+    this.body.slice(1).forEach((segment) => {
+      if (head.x === segment.x && head.y === segment.y) {
         this.gameOver();
       }
     });
   }
 
   growthHandling(head) {
-    this.body.unshift(head);
-
     if (this.growthSegments > 0) {
+      this.body.unshift(head);
       this.growthSegments--;
     } else {
+      this.body.unshift(head);
       this.body.pop();
     }
   }
@@ -128,11 +105,10 @@ class Snake {
 
   reset() {
     this.body = [{ x: 400, y: 400 }];
-    this.velocity = 40;
+    this.velocity = 2;
     this.growthSegments = 0;
     this.direction = 'RIGHT';
     this.points = 0;
-
   }
 }
 
