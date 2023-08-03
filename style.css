@@ -1,10 +1,6 @@
 body {
   margin: 0;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
@@ -12,44 +8,102 @@ body {
     rgba(17, 87, 158, 1) 47%,
     rgba(0, 243, 255, 1) 92%
   );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Sentrerer vertikalt */
+  min-height: 100vh; /* Gjør at body fyller hele vindushøyden */
+}
+
+h1 {
+    font-size: 55px;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #points-display {
-  margin-bottom: 20px;
-  color: white;
-  font-size: 24px;
+  margin-top: 1rem;
+  font-size: 32px;
 }
 
 canvas {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: rgb(189, 189, 188);
   box-shadow: 52px 52px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 #gameover-display {
-  display: block;
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px 20px;
+  text-align: center;
 }
 
-#reset-button {
-  display: none;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-#reset-button:hover {
-  background-color: lightgrey;
+#game-over {
+  font-size: 42px;
 }
 
 #final-score {
-  display: none;
+  font-size: 24px;
+  margin-bottom: 40px; /* legger til litt plass mellom score og reset-knappen */
+}
+
+/* CSS btn by Alpine Day*/
+#reset-button {
+  background-color: #3dd1e7;
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+  color: #000000;
+  display: flex;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: 0.75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#reset-button:focus {
+  outline: 0;
+}
+
+#reset-button:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+#reset-button:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  #reset-button {
+    padding: 0.75rem 3rem;
+    font-size: 1.25rem;
+  }
 }

@@ -11,6 +11,8 @@ const pointsDisplay = document.getElementById('points-display');
 const gridSize = 40;
 const gridCount = 20;
 
+let isGameover = false;
+
 canvas.width = gridSize * gridCount;
 canvas.height = gridSize * gridCount;
 
@@ -19,25 +21,26 @@ const apple = new Food(ctx, canvas, snake);
 
 function gameOver() {
   snake.velocity = 0;
-  resetBtn.style.display = 'block';
-  finalScore.style.display = 'block';
+  document.getElementById('gameover-display').style.display = 'block';
   finalScore.innerText = `Final score: ${snake.points}`;
+  isGameover = true;
 }
 
 resetBtn.addEventListener('click', () => {
   snake.reset();
-  resetBtn.style.display = 'none';
-  finalScore.style.display = 'none';
+  apple.changePosition();
+  document.getElementById('gameover-display').style.display = 'none';
+  isGameover = false;
 });
 
-let animationFrameId;
+if (!isGameover) {
+  function gameLoop(timestamp) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    snake.update(apple, timestamp);
+    apple.update();
+    pointsDisplay.innerText = `Score: ${snake.points}`;
 
-function gameLoop(timestamp) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  snake.update(apple, timestamp);
-  apple.update();
-  pointsDisplay.innerText = `Points ${snake.points.value}`;
-
-  animationFrameId = requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);
+  }
+  gameLoop();
 }
-gameLoop();

@@ -5,7 +5,7 @@ class Food {
       this.snake = snake;
       this.width = 40;
       this.height = 40;
-      this.changePosition(); // Endret for å sette startposisjon ved konstruksjon
+      this.changePosition();
   
       setInterval(() => {
         this.changePosition();
