@@ -5,18 +5,19 @@ class Food {
       this.snake = snake;
       this.width = 40;
       this.height = 40;
+
+      this.appleImg = new Image();
+      this.appleImg.src = 'assets/apple.png';
+
       this.changePosition();
   
       setInterval(() => {
         this.changePosition();
-      }, 100000);
+      }, 5000);
     }
   
     #draw() {
-      this.ctx.beginPath();
-      this.ctx.fillStyle = 'red';
-      this.ctx.fillRect(this.x, this.y, this.width, this.height);
-      this.ctx.closePath();
+      this.ctx.drawImage(this.appleImg, this.x, this.y, this.width, this.height);
     }
   
     update() {

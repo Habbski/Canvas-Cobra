@@ -4,9 +4,9 @@ body {
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
-    #507124 31%,
-    rgb(104, 158, 17) 47%,
-    rgb(217, 255, 0) 92%
+    #41a281 31%,
+    #d26200 47%,
+    #fc9e22 92%
   );
   display: flex;
   flex-direction: column;
@@ -33,6 +33,7 @@ body {
   margin-right: 20px;
   font-size: large;
   background-color: rgb(59, 59, 59);
+  box-shadow: 10px 10px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 #info-box img {
@@ -42,7 +43,7 @@ body {
 
 canvas {
   background-color: rgb(189, 189, 188);
-  box-shadow: 52px 52px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 30px 30px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 #canvas-container {
@@ -83,7 +84,7 @@ canvas {
 
 /* CSS btn by Alpine Day*/
 .styled-btn {
-  background-color: #c1c925;
+  background-color: #808080;
   border: 0 solid #e5e7eb;
   box-sizing: border-box;
   color: #000000;
@@ -125,9 +126,10 @@ canvas {
   height: calc(100% - 1px);
 }
 
-.styled-btn:hover:after {
+.styled-btn:hover {
   bottom: 2px;
   left: 2px;
+  background-color: #a1a1a1;
 }
 
 @media (min-width: 768px) {

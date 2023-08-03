@@ -54,6 +54,7 @@ class GameStateManager {
   }
 
   showStartScreen() {
+    drawBackground();
     gameoverDisplay.style.display = 'none';
     startDisplay.style.display = 'block';
     this.currentState = GAME_STATES.START_SCREEN;
@@ -93,7 +94,6 @@ function updateScore(score) {
 }
 
 function gameLoop() {
-  drawBackground();
   gameStateManager.update();
   requestAnimationFrame(gameLoop);
 }
