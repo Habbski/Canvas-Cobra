@@ -1,5 +1,5 @@
 class Snake {
-  constructor(ctx, gameOver, points) {
+  constructor(ctx, gameOver) {
     this.ctx = ctx;
     this.body = [{ x: 400, y: 400 }];
     this.width = 40;
@@ -9,7 +9,7 @@ class Snake {
     this.maxFrequencySpeed = 50;
 
     this.gameOver = gameOver;
-    this.points = points;
+    this.points = 0;
 
     this.controller();
     this.direction = 'RIGHT';
@@ -68,7 +68,7 @@ class Snake {
       head.y + this.height > food.y
     ) {
       this.growthSegments = SEGMENT_SIZE;
-      this.points.value += 10;
+      this.points += 10;
       food.changePosition();
       if (this.updateFrequency > this.maxFrequencySpeed) {
         this.updateFrequency -= 5;
@@ -131,9 +131,8 @@ class Snake {
     this.velocity = 40;
     this.growthSegments = 0;
     this.direction = 'RIGHT';
-    this.points.value = 0;
+    this.points = 0;
 
-    document.getElementById('reset-button').style.display = 'none';
   }
 }
 

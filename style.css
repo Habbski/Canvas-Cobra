@@ -1,7 +1,23 @@
 body {
   margin: 0;
   overflow: hidden;
-  background-color: rgba(56, 50, 50, 0.824);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(25, 153, 138, 1) 31%,
+    rgba(17, 87, 158, 1) 47%,
+    rgba(0, 243, 255, 1) 92%
+  );
+}
+
+#points-display {
+  margin-bottom: 20px;
+  color: white;
+  font-size: 24px;
 }
 
 canvas {
@@ -10,8 +26,30 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgb(189, 189, 188);
+  box-shadow: 52px 52px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#gameover-display {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
 }
 
 #reset-button {
+  display: none;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#reset-button:hover {
+  background-color: lightgrey;
+}
+
+#final-score {
   display: none;
 }
