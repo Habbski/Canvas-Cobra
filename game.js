@@ -10,15 +10,26 @@ const GAME_STATES = {
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-const resetBtn = document.getElementById('reset-button');
 const finalScore = document.getElementById('final-score');
 const pointsDisplay = document.getElementById('points-display');
+const startDisplay = document.getElementById('start-display');
+const mainMenuBtn = document.getElementById('main-menu-button');
+const startButton = document.getElementById('start-button');
+const gameoverDisplay = document.getElementById('gameover-display');
+const resetBtn = document.getElementById('reset-button');
 
 const gridSize = 40;
 const gridCount = 20;
 
 canvas.width = gridSize * gridCount;
 canvas.height = gridSize * gridCount;
+
+const background = new Image();
+background.src = 'assets/grass-background.jpg';
+
+function drawBackground() {
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+}
 
 const snake = new Snake(ctx, gameOver);
 const apple = new Food(ctx, canvas, snake);
@@ -43,24 +54,26 @@ class GameStateManager {
   }
 
   showStartScreen() {
-    document.getElementById('start-display').style.display = 'block';
+    gameoverDisplay.style.display = 'none';
+    startDisplay.style.display = 'block';
+    this.currentState = GAME_STATES.START_SCREEN;
   }
 
   runGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
     snake.update(apple);
     apple.update();
-    pointsDisplay.innerText = `Score: ${snake.points}`;
+    updateScore(snake.points);
   }
 
   showGameOver() {
-    snake.velocity = 0;
-    document.getElementById('gameover-display').style.display = 'block';
+    gameoverDisplay.style.display = 'block';
     finalScore.innerText = `Final score: ${snake.points}`;
   }
 
   startGame() {
-    document.getElementById('start-display').style.display = 'none';
+    startDisplay.style.display = 'none';
     this.currentState = GAME_STATES.PLAYING;
   }
 
@@ -71,24 +84,34 @@ class GameStateManager {
 
 const gameStateManager = new GameStateManager();
 
-resetBtn.addEventListener('click', () => {
-  snake.reset();
-  apple.changePosition();
-  document.getElementById('gameover-display').style.display = 'none';
-  gameStateManager.startGame();
-});
-
 function gameOver() {
   gameStateManager.gameOver();
 }
 
+function updateScore(score) {
+  pointsDisplay.innerText = `${score}`;
+}
+
 function gameLoop() {
+  drawBackground();
   gameStateManager.update();
   requestAnimationFrame(gameLoop);
 }
-gameLoop();
+background.onload = gameLoop();
 
-const startButton = document.getElementById('start-button');
 startButton.addEventListener('click', () => {
+  gameStateManager.startGame();
+});
+
+mainMenuBtn.addEventListener('click', () => {
+  gameStateManager.showStartScreen();
+  snake.reset();
+  apple.changePosition();
+});
+
+resetBtn.addEventListener('click', () => {
+  snake.reset();
+  apple.changePosition();
+  gameoverDisplay.style.display = 'none';
   gameStateManager.startGame();
 });

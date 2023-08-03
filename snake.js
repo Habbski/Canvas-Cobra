@@ -47,7 +47,7 @@ class Snake {
   }
 
   collision(food, head) {
-    const SEGMENT_SIZE = 2;
+    const SEGMENT_SIZE = 4;
 
     // Collision with food
     if (
@@ -99,7 +99,7 @@ class Snake {
   }
 
   boundaries(head) {
-    if (head.x > 40 * 20 || head.x < 0 || head.y > 40 * 20 || head.y < 0)
+    if (head.x + this.width > 40 * 20 || head.x < 0 || head.y + this.height > 40 * 20 || head.y < 0)
       this.gameOver();
   }
 
