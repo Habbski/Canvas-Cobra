@@ -47,7 +47,7 @@ class Snake {
   }
 
   collision(food, head) {
-    const SEGMENT_SIZE = 4;
+    const SEGMENT_SIZE = 6;
 
     // Collision with food
     if (
@@ -59,6 +59,7 @@ class Snake {
       this.growthSegments += SEGMENT_SIZE;
       this.points += 10;
       food.changePosition();
+      food.resetInterval();
     }
 
     // Collision with snake body
