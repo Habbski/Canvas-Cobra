@@ -29,7 +29,7 @@ body {
 #info-box {
   width: 200px;
   padding: 10px;
-  border: 1px solid black;
+  border: 3px solid black;
   margin-right: 20px;
   font-size: large;
   background-color: rgb(59, 59, 59);
@@ -44,6 +44,7 @@ body {
 canvas {
   background-color: rgb(189, 189, 188);
   box-shadow: 30px 30px 2px 1px rgba(0, 0, 0, 0.2);
+  border: 3px solid black;
 }
 
 #canvas-container {
@@ -56,7 +57,12 @@ canvas {
   display: none;
 }
 
+#leaderboard-display {
+  display: none;
+}
+
 #start-display,
+#leaderboard-display,
 #gameover-display {
   position: absolute;
   top: 50%;
@@ -69,22 +75,71 @@ canvas {
   text-align: center;
 }
 
-#game-over {
-  font-size: 42px;
+#leaderboard-display h2 {
+  font-size: 24px;
+  color: #fafafa;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-#final-score {
+#gameover-display #game-over {
+  font-size: 36px;
+  color: #ffffff;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#gameover-display #final-score {
   font-size: 24px;
-  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: normal;
 }
 
 #start-button {
   margin-bottom: 20px;
 }
 
+#leaderboard-display ol {
+  list-style: none;
+  padding: 0;
+  font-size: 20px;
+  max-width: 300px;
+  text-align: left;
+}
+
+#leaderboard-display li {
+  border-bottom: 1px solid #a1a1a1;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+}
+
+#leaderboard-display li:last-child {
+  border-bottom: none;
+}
+
+#leaderboard-display li:hover {
+  color: black;
+  background-color: #ededed;
+}
+
+#leaderboard-display button {
+  margin-top: 20px;
+}
+
 /* CSS btn by Alpine Day*/
 .styled-btn {
-  background-color: #808080;
+  background-color: #ededed;
   border: 0 solid #e5e7eb;
   box-sizing: border-box;
   color: #000000;

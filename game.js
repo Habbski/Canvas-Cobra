@@ -3,6 +3,7 @@ import Food from './food.js';
 
 const GAME_STATES = {
   START_SCREEN: 'startScreen',
+  LEADERBOARD: 'leaderboard',
   PLAYING: 'playing',
   GAME_OVER: 'gameOver',
 };
@@ -11,11 +12,16 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 const finalScore = document.getElementById('final-score');
+
 const pointsDisplay = document.getElementById('points-display');
 const startDisplay = document.getElementById('start-display');
+const leaderBoardDisplay = document.getElementById('leaderboard-display');
+const gameoverDisplay = document.getElementById('gameover-display');
+
 const mainMenuBtn = document.getElementById('main-menu-button');
 const startButton = document.getElementById('start-button');
-const gameoverDisplay = document.getElementById('gameover-display');
+const leaderBoardBtn = document.getElementById('leaderBoard-button');
+const backToMenuBtn = document.getElementById('back-to-menu-button');
 const resetBtn = document.getElementById('reset-button');
 
 const gridSize = 40;
@@ -44,6 +50,9 @@ class GameStateManager {
       case GAME_STATES.START_SCREEN:
         this.showStartScreen();
         break;
+      case GAME_STATES.LEADERBOARD:
+        this.leaderboardScreen();
+        break;
       case GAME_STATES.PLAYING:
         this.runGame();
         break;
@@ -55,9 +64,18 @@ class GameStateManager {
 
   showStartScreen() {
     drawBackground();
-    gameoverDisplay.style.display = 'none';
     startDisplay.style.display = 'block';
+    leaderBoardDisplay.style.display = 'none';
+    gameoverDisplay.style.display = 'none';
+
     this.currentState = GAME_STATES.START_SCREEN;
+  }
+
+  leaderboardScreen() {
+    leaderBoardDisplay.style.display = 'block';
+    startDisplay.style.display = 'none';
+
+    this.currentState = GAME_STATES.LEADERBOARD;
   }
 
   runGame() {
@@ -103,10 +121,19 @@ startButton.addEventListener('click', () => {
   gameStateManager.startGame();
 });
 
+leaderBoardBtn.addEventListener('click', () => {
+  gameStateManager.leaderboardScreen();
+  console.log('Click');
+});
+
 mainMenuBtn.addEventListener('click', () => {
   gameStateManager.showStartScreen();
   snake.reset();
   apple.changePosition();
+});
+
+backToMenuBtn.addEventListener('click', () => {
+  gameStateManager.showStartScreen();
 });
 
 resetBtn.addEventListener('click', () => {

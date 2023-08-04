@@ -9,16 +9,35 @@
   <body>
     <div id="game-container">
       <div id="info-box">
-        <h3>CANVAS COBRA</h1>
+        <h3>CANVAS COBRA</h3>
         <h3>Score: <span id="points-display">0</span></h3>
         <h3>High Score: <span id="high-score">0</span></h3>
         <p>Controls:</p>
-        <img src="assets/arrows.png" alt="arrows">
+        <img src="assets/arrows.png" alt="arrows" />
       </div>
       <div id="canvas-container">
         <div id="start-display">
           <button class="styled-btn" id="start-button">Start Game</button>
-          <button class="styled-btn">Leaderboard</button>
+          <button class="styled-btn" id="leaderBoard-button">
+            Leaderboard
+          </button>
+        </div>
+
+        <div id="leaderboard-display">
+          <h2>Top 10</h2>
+          <ol>
+            <li>BolleBob: 300 poeng</li>
+            <li>Skjetsekk: 250 poeng</li>
+            <li>Bladlus: 200 poeng</li>
+            <li>KåreMongo: 150 poeng</li>
+            <li>Alberto: 100 poeng</li>
+            <li>Svampen: 300 poeng</li>
+            <li>Snurretass: 250 poeng</li>
+            <li>Gullosten2000: 200 poeng</li>
+            <li>MangoTango: 150 poeng</li>
+            <li>HotSauce666: 100 poeng</li>
+          </ol>
+          <button class="styled-btn" id="back-to-menu-button">Back</button>
         </div>
 
         <div id="gameover-display">
